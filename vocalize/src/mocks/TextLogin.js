@@ -1,6 +1,6 @@
 const TextLogin = {
   login: 'Login',
-  inputEmail: 'Email',
+  inputEmail: 'E-mail',
   inputSenha: 'Senha',
   btnLogin: 'Login',
   esqueceuSenha: 'Esqueci minha senha!',
