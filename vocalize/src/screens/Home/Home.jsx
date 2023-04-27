@@ -4,7 +4,7 @@ import { Text } from 'react-native'
 export default function Home() {
   return (
     <>
-        <Text>HOME</Text>
+        <Text>A VADA O CU</Text>
     </>
   )
 }
