@@ -1,9 +1,11 @@
-import { NavigationContainer } from '@react-navigation/native'
-import { Tab } from 'bootstrap'
 import React from 'react'
-import Home from '../screens/Home/Home'
+import { NavigationContainer } from '@react-navigation/native'
+import Home from '../screens/Home/ReceiveHome'
 
 export default function RotaHome() {
+
+    const Tab = createNativeTabNavigator();
+
   return (
     <>
         <NavigationContainer>

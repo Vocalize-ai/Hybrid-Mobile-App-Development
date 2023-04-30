@@ -35,7 +35,7 @@ export default function Login() {
     const response = await AuthSession.startAsync({ authUrl });
     console.log(response);
     
-    navigation.navigate('Home');
+    navigation.navigate('ReceiveHome');
 
   }
   
@@ -79,6 +79,8 @@ export default function Login() {
           <Text style={styles.txtEsqueceuSenha}>{TextLogin.esqueceuSenha}</Text>
 
           <View style={styles.GoogleDiv}>
+
+          
             
             <ImageBackground
             source={googleDiv}
@@ -105,6 +107,7 @@ export default function Login() {
 
               </View>
             </View>
+            
             </ImageBackground>
           </View>
 
@@ -142,8 +145,8 @@ styles = StyleSheet.create({
 
   },
   vetoresInput:{
-    marginTop:3,
-    width:14,
+    marginTop:5,
+    width:16,
     height:16,
     marginRight: 5
   },

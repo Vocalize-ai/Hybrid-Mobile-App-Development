@@ -1,14 +1,24 @@
 import React from 'react'
 import { View, ImageBackground , StyleSheet, TextInput, TouchableOpacity, Text, Image} from 'react-native'
+
 import fundo from '../../../assets/fundo.png'
 import TextRegister from '../../mocks/TextRegister'
 import logoGoogle from '../../../assets/loginGoogle.png'
 import boneco from '../../../assets/BonecoLogin.png'
 import cadeado from '../../../assets/CadeadoSenha.png'
+import telefone from './assets/telefone.png'
+import cpf from './assets/cpf.png'
+
 import { useNavigation } from '@react-navigation/native'
 import * as AuthSession from 'expo-auth-session'
+import { useState } from 'react'
 
 export default function Registrar() {
+
+  const handleRegister = () => {
+    [register, setRegister] = useState()
+    
+  };
 
   const navigation = useNavigation();
 
@@ -34,7 +44,7 @@ export default function Registrar() {
         <Text style={styles.txtLogin}>{TextRegister.regPage}</Text>
 
         <View style={sReg.inputRegister}>
-          <Image source={boneco}/>
+          <Image source={boneco} style={styles.vetoresInput}/>
           <TextInput 
           placeholder={TextRegister.email}
           placeholderTextColor={'#D0D0D0'}
@@ -44,7 +54,7 @@ export default function Registrar() {
           />
         </View>
         <View style={sReg.inputRegister}>
-          <Image source={cadeado}/>
+          <Image source={cadeado} style={styles.vetoresInput}/>
           <TextInput 
           placeholder={TextRegister.password}
           placeholderTextColor={'#D0D0D0'}
@@ -55,7 +65,7 @@ export default function Registrar() {
           />
         </View>
         <View style={sReg.inputRegister}>
-          <Image/>
+          <Image source={telefone} style={styles.vetoresInput}/>
           <TextInput 
           placeholder={TextRegister.tel}
           placeholderTextColor={'#D0D0D0'}
@@ -64,7 +74,7 @@ export default function Registrar() {
           />
         </View>
         <View style={sReg.inputRegister}>
-          <Image/>
+          <Image source={cpf} style={styles.vetoresInput}/>
           <TextInput 
           placeholder={TextRegister.cpf}
           placeholderTextColor={'#D0D0D0'}
@@ -72,7 +82,7 @@ export default function Registrar() {
           keyboardType='phone-pad'
           />
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleRegister}>
           <View style={styles.btnLogin}>
             <Text style={styles.txtBtnLogin}>{TextRegister.btnRegistrar}</Text>
           </View>
