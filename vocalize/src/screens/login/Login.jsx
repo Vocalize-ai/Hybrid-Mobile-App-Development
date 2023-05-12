@@ -11,7 +11,7 @@ import logoGoogle from '../../../assets/loginGoogle.png'
 
 import * as AuthSession from 'expo-auth-session'
 
-import { View, Text, ImageBackground , Image, StyleSheet, TextInput, Button } from 'react-native'
+import { View, Text, ImageBackground , Image, StyleSheet, TextInput } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native'
 
@@ -24,7 +24,7 @@ export default function Login() {
     navigation.navigate('Registrar');
   }
 
-  async function handleSignInGoogle(){
+  async function handleSignInGoogle({navigation}){
 
     const CLIENT_ID = '559661121569-rjso4b8ke01s5r06jhcp6j6lvsan4ftu.apps.googleusercontent.com';
     const REDIRECT_URI = 'https://auth.expo.io/@gustafont/vocalize';
@@ -36,7 +36,6 @@ export default function Login() {
     console.log(response);
     
     navigation.navigate('ReceiveHome');
-
   }
   
 

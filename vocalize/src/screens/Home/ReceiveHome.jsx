@@ -1,5 +1,5 @@
 import React from 'react'
-import RotaHome from '../../routes/RotaHome'
+import RotaHome from '../../routes/RotaHome.js'
 
 
 

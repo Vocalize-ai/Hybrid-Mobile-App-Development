@@ -1,8 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-export default function Home() {
+export default function Fatura() {
   return (
-    <View><Text>Home</Text></View>
+    <View>
+        <Text>Fatura</Text>
+    </View>
   )
 }

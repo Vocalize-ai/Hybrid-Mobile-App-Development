@@ -1,13 +1,14 @@
 import React from 'react'
 import { View, ImageBackground , StyleSheet, TextInput, TouchableOpacity, Text, Image} from 'react-native'
+import isValidCpf from './validaCpf'
 
 import fundo from '../../../assets/fundo.png'
 import TextRegister from '../../mocks/TextRegister'
 import logoGoogle from '../../../assets/loginGoogle.png'
 import boneco from '../../../assets/BonecoLogin.png'
 import cadeado from '../../../assets/CadeadoSenha.png'
-import telefone from './assets/telefone.png'
-import cpf from './assets/cpf.png'
+import imgTelefone from './assets/telefone.png'
+import imgCpf from './assets/cpf.png'
 
 import { useNavigation } from '@react-navigation/native'
 import * as AuthSession from 'expo-auth-session'
@@ -15,12 +16,60 @@ import { useState } from 'react'
 
 export default function Registrar() {
 
-  const handleRegister = () => {
-    [register, setRegister] = useState()
-    
+  const navigation = useNavigation();
+  
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [celular, setCelular] = useState('');
+  const [cpf, setCpf] = useState('');
+
+
+  const handleEmailChange = (text) => {
+    setEmail(text);
   };
 
-  const navigation = useNavigation();
+  const handleSenhaChange = (text) => {
+    setSenha(text);
+  };
+
+  const handleCelularChange = (text) => {
+    setCelular(text);
+  };
+
+  const handleCpfChange = (text) => {
+    setCpf(text);
+  };
+
+  const handleRegister = () => {
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if(!emailRegex.test(email)) {
+      alert('O email é inválido');
+      return;
+    }
+
+    if(!/[A-Z]/.test(senha) || !/[a-z]/.test(senha) || senha.length < 8) {
+      alert('A senha deve conter pelo menos \n1. Uma letra MAIÚSCULA\n2. Uma letra MINÚSCULA\n3. MÍNIMO 8 caracteres');
+      return;
+    }
+
+    if(celular.length  != 11){
+      alert('O celular deve conter o DDD + os dados');
+      setCelular('');
+      return;
+    } 
+
+    if(!isValidCpf(cpf)){
+      alert('CPF inválido');
+      setCpf('');
+      return;
+    }
+
+    console.log(`Usuário registrado. \nemail: ${email}\nsenha: ${senha}\ncelular: ${celular}\ncpf: ${cpf}`);
+    navigation.navigate("ReceiveHome");
+
+  };
 
   async function handleSignInGoogle(){
 
@@ -33,7 +82,7 @@ export default function Registrar() {
     const response = await AuthSession.startAsync({ authUrl });
     console.log(response);
     
-    navigation.navigate('Home');
+    navigation.navigate('ReceiveHome');
 
   }
   
@@ -51,6 +100,7 @@ export default function Registrar() {
           autoCompleteType='email'
           keyboardType='email-address'
           style={styles.txtInputsRegister}
+          onChangeText={handleEmailChange}
           />
         </View>
         <View style={sReg.inputRegister}>
@@ -62,24 +112,27 @@ export default function Registrar() {
           autoCompleteType='password'
           keyboardType='default'
           style={styles.txtInputsRegister}
+          onChangeText={handleSenhaChange}
           />
         </View>
         <View style={sReg.inputRegister}>
-          <Image source={telefone} style={styles.vetoresInput}/>
+          <Image source={imgTelefone} style={styles.vetoresInput}/>
           <TextInput 
           placeholder={TextRegister.tel}
           placeholderTextColor={'#D0D0D0'}
           autoCompleteType='off|tel'
           keyboardType='phone-pad'
+          onChangeText={handleCelularChange}
           />
         </View>
         <View style={sReg.inputRegister}>
-          <Image source={cpf} style={styles.vetoresInput}/>
+          <Image source={imgCpf} style={styles.vetoresInput}/>
           <TextInput 
           placeholder={TextRegister.cpf}
           placeholderTextColor={'#D0D0D0'}
           autoCompleteType='off|tel'
           keyboardType='phone-pad'
+          onChangeText={handleCpfChange}
           />
         </View>
         <TouchableOpacity onPress={handleRegister}>
