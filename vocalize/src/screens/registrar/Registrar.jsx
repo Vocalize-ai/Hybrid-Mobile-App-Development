@@ -19,11 +19,15 @@ export default function Registrar() {
 
   const navigation = useNavigation();
   
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [celular, setCelular] = useState('');
   const [cpf, setCpf] = useState('');
 
+  const handleNomeChange = (text) => {
+    setNome(text);
+  }
 
   const handleEmailChange = (text) => {
     setEmail(text);
@@ -42,6 +46,15 @@ export default function Registrar() {
   };
 
   const handleRegister = async () => {
+
+    if (
+      nome.length <= 2 &&
+      nome.length >= 50 &&
+      !/^[a-z]+$/.test(nome)&&
+      !/[A-Z ]+$/.test(nome)
+    ){
+      alert("Digite um nome que não contenha números nem caractéres especiais")
+    }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -67,12 +80,13 @@ export default function Registrar() {
       return;
     }
 
-    const clienteData = {
-      email,
-      senha,
-      celular,
-      cpf,
-    };
+    // const clienteData = {
+    //   nome,
+    //   email,
+    //   senha,
+    //   celular,
+    //   cpf,
+    // }
 
     // try {
     //   const response = await axios.post('http://localhost:8080/api/cliente', clienteData);
@@ -87,7 +101,7 @@ export default function Registrar() {
 
     navigation.navigate("ReceiveHome");
 
-    console.log(`Usuário registrado. \nemail: ${email}\nsenha: ${senha}\ncelular: ${celular}\ncpf: ${cpf}`);
+    console.log(`Usuário registrado. \nnome: ${nome}\nemail: ${email}\nsenha: ${senha}\ncelular: ${celular}\ncpf: ${cpf}`);
   };
 
   async function handleSignInGoogle(){
@@ -116,9 +130,10 @@ export default function Registrar() {
           <TextInput 
           placeholder={TextRegister.name}
           placeholderTextColor={'#D0D0D0'}
-          autoCompleteType='text'
+          autoCompleteType="default"
+          keyboardType='default'
           style={[styles.txtInputsRegister, {width:203}]}
-          onChangeText={handleEmailChange}
+          onChangeText={handleNomeChange}
           />
         </View>
 
