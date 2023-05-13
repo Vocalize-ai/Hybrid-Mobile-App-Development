@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { View, ImageBackground , StyleSheet, TextInput, TouchableOpacity, Text, Image} from 'react-native'
 import isValidCpf from './validaCpf'
 
@@ -40,7 +41,7 @@ export default function Registrar() {
     setCpf(text);
   };
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -66,9 +67,27 @@ export default function Registrar() {
       return;
     }
 
-    console.log(`Usuário registrado. \nemail: ${email}\nsenha: ${senha}\ncelular: ${celular}\ncpf: ${cpf}`);
+    const clienteData = {
+      email,
+      senha,
+      celular,
+      cpf,
+    };
+
+    // try {
+    //   const response = await axios.post('http://localhost:8080/api/cliente', clienteData);
+
+    //   // Exibindo a resposta do backend
+    //   console.log(response.data);
+
+    //   navigation.navigate("ReceiveHome");
+    // } catch (error) {
+    //   console.error(error);
+    // }
+
     navigation.navigate("ReceiveHome");
 
+    console.log(`Usuário registrado. \nemail: ${email}\nsenha: ${senha}\ncelular: ${celular}\ncpf: ${cpf}`);
   };
 
   async function handleSignInGoogle(){
@@ -89,8 +108,19 @@ export default function Registrar() {
 
   return (<>
     <View style={sReg.divMasterRegister}>
-      <ImageBackground source={fundo} resizeMode="contain" style={sReg.divMasterRegister}>
+      <ImageBackground source={fundo} resizeMode="cover"  style={sReg.imgMasterBackground}>
         <Text style={styles.txtLogin}>{TextRegister.regPage}</Text>
+
+        <View style={sReg.inputRegister}>
+          <Image source={boneco} style={styles.vetoresInput}/>
+          <TextInput 
+          placeholder={TextRegister.name}
+          placeholderTextColor={'#D0D0D0'}
+          autoCompleteType='text'
+          style={[styles.txtInputsRegister, {width:203}]}
+          onChangeText={handleEmailChange}
+          />
+        </View>
 
         <View style={sReg.inputRegister}>
           <Image source={boneco} style={styles.vetoresInput}/>
@@ -99,7 +129,7 @@ export default function Registrar() {
           placeholderTextColor={'#D0D0D0'}
           autoCompleteType='email'
           keyboardType='email-address'
-          style={styles.txtInputsRegister}
+          style={[styles.txtInputsRegister, {width:203}]}
           onChangeText={handleEmailChange}
           />
         </View>
@@ -111,7 +141,7 @@ export default function Registrar() {
           secureTextEntry={true}
           autoCompleteType='password'
           keyboardType='default'
-          style={styles.txtInputsRegister}
+          style={[styles.txtInputsRegister, {width:203}]}
           onChangeText={handleSenhaChange}
           />
         </View>
@@ -123,6 +153,7 @@ export default function Registrar() {
           autoCompleteType='off|tel'
           keyboardType='phone-pad'
           onChangeText={handleCelularChange}
+          style={[styles.txtInputsRegister, {width:203}]}
           />
         </View>
         <View style={sReg.inputRegister}>
@@ -133,6 +164,7 @@ export default function Registrar() {
           autoCompleteType='off|tel'
           keyboardType='phone-pad'
           onChangeText={handleCpfChange}
+          style={[styles.txtInputsRegister, {width:203}]}
           />
         </View>
         <TouchableOpacity onPress={handleRegister}>
@@ -161,8 +193,14 @@ sReg = StyleSheet.create({
     height: 915,
     alignItems: "center",
   },
+  imgMasterBackground:{
+    width: '100%',
+    height: 915,
+    alignItems: "center",
+  
+  },
   txtInputsRegister:{
-    width:200,
+    width: "100%",
     height:20,
     color: 500,
     marginTop: 2,

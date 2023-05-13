@@ -15,10 +15,10 @@ export default function RotaHome() {
     <Tab.Navigator
     screenOptions={{ headerShown: false }}
     > 
-      <Tab.Screen name = "Home" component={Home} />
-      <Tab.Screen name = "Fatura" component={Fatura} options={{headersShown: false}}/>
-      <Tab.Screen name = "Contrate" component={Contrate} options={{headersShown: false}}/>
-      <Tab.Screen name = "Chamados" component={Chamados} options={{headersShown: false}}/>
+      <Tab.Screen name = "Home" component={Home}/>
+      <Tab.Screen name = "Fatura" component={Fatura}/>
+      <Tab.Screen name = "Contrate" component={Contrate}/>
+      <Tab.Screen name = "Chamados" component={Chamados}/>
     </Tab.Navigator>
 
   )

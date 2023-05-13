@@ -18,6 +18,10 @@ import { TouchableOpacity } from 'react-native'
 export default function Login() {
 
   const navigation = useNavigation();
+
+  const handleLogin = () => {
+    navigation.navigate('ReceiveHome');
+  }
   
 
   const handlePress = () => {
@@ -69,7 +73,7 @@ export default function Login() {
               />
           </View>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleLogin}>
             <View style={styles.btnLogin}>
               <Text style={styles.txtBtnLogin}>{TextLogin.btnLogin}</Text>
             </View>

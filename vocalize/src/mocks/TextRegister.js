@@ -1,5 +1,6 @@
 const TextRegister = {
     regPage: 'Registrar',
+    name: 'Nome',
     email: 'E-mail',
     password: 'Senha',
     tel: 'Telefone',
