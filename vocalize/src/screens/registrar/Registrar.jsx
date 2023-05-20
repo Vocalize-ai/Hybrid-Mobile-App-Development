@@ -89,7 +89,7 @@ export default function Registrar() {
     // }
 
     // try {
-    //   const response = await axios.post('http://localhost:8080/api/cliente', clienteData);
+    //   const response = await axios.post('http://localhost/api/cliente', clienteData);
 
     //   // Exibindo a resposta do backend
     //   console.log(response.data);
